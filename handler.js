@@ -16,25 +16,45 @@ module.exports.handle = async (event, context) => {
     }
   }
 
-  let lo = dynamoDb.put(params, (err) => {
-    if (err) {
-      console.log(err);
-    }
-    const response = {
-      statusCode: 200,
-    };
-  })
+  if (data.username && data.email && data.password) {
 
-  console.log(lo);
-  return {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "*/*",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "*",
-    },
-    body: "Hello!",
+    dynamoDb.put(params, (err) => {
+      if (err) {
+        console.log(err);
+        return {
+          statusCode: 400,
+          headers: {
+            "Content-Type": "*/*",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*",
+          },
+          body: "Hello 3"
+        }
+      } else {
+        return {
+          statusCode: 200,
+          headers: {
+            "Content-Type": "*/*",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*",
+          },
+          body: "Hello 2"
+        }
+      }
+    })
+  } else {
+
+    return {
+      statusCode: 400,
+      headers: {
+        "Content-Type": "*/*",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+      },
+      body: "Hello 1",
+    }
   };
+
 
 
 
