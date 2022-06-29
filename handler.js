@@ -28,7 +28,7 @@ module.exports.handle = async (event, context) => {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "*",
           },
-          body: "Hello 3"
+          // body: "Hello 3"
         }
       } else {
         return {
@@ -38,7 +38,7 @@ module.exports.handle = async (event, context) => {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "*",
           },
-          body: "Hello 2"
+          // body: "Hello 2"
         }
       }
     })
@@ -51,7 +51,7 @@ module.exports.handle = async (event, context) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "*",
       },
-      body: "Hello 1",
+      // body: "Hello 1",
     }
   };
 
