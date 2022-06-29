@@ -15,7 +15,7 @@ function App() {
 
       <div className="productHeadline">
         <h2 align="center" id="product_headline">Crypto Tracker: All your crypto in one place</h2>
-        <h3 id="product_description">Crypto Tracker is a web app that allows you to easily manage your Crypto currency holdings in one place. Keep track of the prices and your profit/loss trends</h3>
+        <h3 id="product_description">Crypto Tracker is a web app that allows you to easily manage your Crypto currency holdings in one place. Keep track of the prices and your profit/loss trends.</h3>
       </div>
       <div>
         <h1 id="registration_heading"> Registration</h1>
