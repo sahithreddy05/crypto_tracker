@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <div className="logoSpace">
-        <img src={logo} className="logo" alt="logo" />
+        <img src={logo} id="logo" alt="logo" />
         <h1 id="company_name">Crypto Tracker</h1>
       </div>
 
