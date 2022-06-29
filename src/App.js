@@ -22,7 +22,7 @@ function App() {
         username <input type="text" id="username_field" />
         email <input type="text" id="email_field" />
         password <input type="text" id="password_field" />
-        <button id="signup_button">signup</button>
+        <button id="signup_button">Signup</button>
       </div>
       <h3 id="features_heading">Features</h3>
 
