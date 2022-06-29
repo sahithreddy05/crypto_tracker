@@ -6,7 +6,8 @@ aws.config.loadFromPath("./skillreactor/config.json");
 
 
 module.exports.handle = async (event, context) => {
-  const data = JSON.parse(event.body);
+  let data = JSON.stringify(event.body);
+
   const params = {
     TableName: 'CryptoPortfolioTracker-user-sahith05',
     Item: {
@@ -16,34 +17,19 @@ module.exports.handle = async (event, context) => {
     }
   }
 
-  if (data.username && data.email && data.password) {
-
-    dynamoDb.put(params, (err) => {
-      if (err) {
-        console.log(err);
-        return {
-          statusCode: 400,
-          headers: {
-            "Content-Type": "*/*",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "*",
-          },
-          // body: "Hello 3"
-        }
-      } else {
-        return {
-          statusCode: 200,
-          headers: {
-            "Content-Type": "*/*",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "*",
-          },
-          // body: "Hello 2"
-        }
-      }
-    })
-  } else {
-
+  try {
+     dynamoDb.put(params).promise();
+    return {
+      statusCode: 200,
+      headers: {
+        "Content-Type": "*/*",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+      },
+      body: JSON.parse(data)
+    }
+  } catch (err) {
+    console.log(err);
     return {
       statusCode: 400,
       headers: {
@@ -51,12 +37,7 @@ module.exports.handle = async (event, context) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "*",
       },
-      // body: "Hello 1",
+      body: "Hello 2"
     }
-  };
-
-
-
-
-
-};
+  }
+}
