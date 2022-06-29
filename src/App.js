@@ -25,9 +25,10 @@ function App() {
         <button id="signup_button">signup</button>
       </div>
       <h3 id="features_heading">Features</h3>
+
       <ol id="features_list">
-        <li className="feature">Add/Remove Crypto Assests</li>
-        <li className="feature">Track Prices</li>
+        <li className="feature">Add/Remove Crypto Assests,</li>
+        <li className="feature">Track Prices,</li>
         <li className="feature">View PnL</li>
       </ol>
       <footer id="copyright_notice">
