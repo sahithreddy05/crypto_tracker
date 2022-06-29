@@ -27,8 +27,8 @@ function App() {
       <h3 id="features_heading">Features</h3>
 
       <ol id="features_list">
-        <li className="feature">Add/Remove Crypto Assests,</li>
-        <li className="feature">Track Prices,</li>
+        <li className="feature">Add/Remove Crypto Assets</li>
+        <li className="feature">Track Prices</li>
         <li className="feature">View PnL</li>
       </ol>
       <footer id="copyright_notice">
@@ -36,9 +36,9 @@ function App() {
       </footer>
       <div>
         <a href="https://skillreactor.io" id="sm_links">
-          <img src={facebook} id="sm_facebook" alt='facebook'/>
-          <img src={linkedin} id="sm_linkedin" alt='linkedin'/>
-          <img src={twitter} id="sm_twitter" alt='twitter'/>
+          <img src={facebook} id="sm_facebook" alt='facebook' />
+          <img src={linkedin} id="sm_linkedin" alt='linkedin' />
+          <img src={twitter} id="sm_twitter" alt='twitter' />
         </a>
       </div>
     </div>
