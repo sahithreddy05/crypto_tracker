@@ -14,6 +14,7 @@ module.exports.handle = async (event, context) => {
   let data = event.body;
   console.log(data);
 
+  try {
   let pass = JSON.parse(data);
   console.log(pass.password);
   let hash = crypto.createHash('sha256').update(pass.password).digest('hex');
@@ -31,6 +32,7 @@ module.exports.handle = async (event, context) => {
   // console.log(pass.username);
   // console.log(pass.email);
   // console.log(pass.password ? pass.password : "no password");
+ 
   if(pass.username && pass.email && pass.password){
   try {
     let result =  await dynamoDb.put(params).promise();
@@ -55,7 +57,10 @@ module.exports.handle = async (event, context) => {
       body: JSON.stringify(err)
     }
   }
-  } else {
+  } 
+} 
+  // else {
+   catch(err){ 
     return {
       statusCode: 400,
       headers: {
