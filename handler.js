@@ -28,6 +28,7 @@ module.exports.handle = async (event, context) => {
     }
   }
 
+  if(pass.username && pass.email && pass.password){
   try {
     let result =  await dynamoDb.put(params).promise();
     return {
@@ -51,7 +52,17 @@ module.exports.handle = async (event, context) => {
       body: JSON.stringify(err)
     }
   }
-
+  } else {
+    return {
+      statusCode: 400,
+      headers: {
+                "Content-Type": "*/*",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "*",
+              },
+      body: JSON.stringify("Please enter all the fields")
+    }
+  }
 
 
 }
