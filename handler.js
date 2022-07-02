@@ -28,6 +28,9 @@ module.exports.handle = async (event, context) => {
     }
   }
 
+  // console.log(pass.username);
+  // console.log(pass.email);
+  // console.log(pass.password ? pass.password : "no password");
   if(pass.username && pass.email && pass.password){
   try {
     let result =  await dynamoDb.put(params).promise();
