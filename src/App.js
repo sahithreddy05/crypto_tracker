@@ -66,7 +66,7 @@ function App() {
           password <input value={password} onChange={handlePassword} type="text" id="password_field" />
           <button id="signup_button" onClick={handleSubmit}>Signup</button>
           <p id="submit_success"></p>
-          <p id="signup_error"></p>
+          <p id="signup_error"></p> 
         </div>
 
         <div className='login-div'>
