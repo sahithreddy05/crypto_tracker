@@ -70,9 +70,9 @@ function App() {
         </div>
 
         <div className='login-div'>
-          <h1 id="login-heading"> Login</h1>
-          username <input type="text" id="username_field" />
-          password <input type="text" id="password_field" />
+          <h1 id="login_heading"> Login</h1>
+          username <input type="text" id="login_username_field" />
+          password <input type="text" id="login_password_field" />
           <button id="login_button">Login</button>
         </div>
       </div>
