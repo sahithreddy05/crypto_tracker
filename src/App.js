@@ -1,6 +1,6 @@
 import "./App.css";
 import React from 'react';
-// import Dashboard from './Dashboard';
+import Dashboard from './Dashboard';
 import Login from './Login'
 
 import { HashRouter, Routes, Route } from 'react-router-dom';
@@ -12,7 +12,7 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path='/' element={<Login />} />
-          {/* <Route path='/dashboard' element={<Dashboard />} /> */}
+          <Route path='/dashboard' element={<Dashboard />} />
         </Routes>
       </HashRouter>
     </div>
