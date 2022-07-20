@@ -1,70 +1,58 @@
 const aws = require("aws-sdk");
 
 aws.config.loadFromPath("./skillreactor/config.json");
-let client = new aws.DynamoDB.DocumentClient();
+// let client = new aws.DynamoDB.DocumentClient();
+var dynamo = require('dynamodb');
+dynamo.AWS.config.loadFromPath("./skillreactor/config.json");
 
-
+var table =
+  dynamo.define('Table', {
+    hashKey: 'username',
+    tableName: 'CryptoPortfolioTracker-user-sahith05',
+  })
+// tableName:"CryptoPortfolioTracker-user-sahith05";
 module.exports.handle = async (event, context) => {
-
   let data = JSON.parse(event.body);
   let token = data.token;
   let quantity = data.quantity;
   if (data.username && data.token && data.quantity) {
-      var params = {
-        TableName: "CryptoPortfolioTracker-user-sahith05",
-        Key: { username: data.username },
-        UpdateExpression: "set assets = :t ",
-        ExpressionAttributeValues: {
-          ":t": {
-            [X = token]: {
-              "quantity": quantity
-            },
-          }
-        },
-        ReturnValues: "UPDATED_NEW"
-      }
 
-      await client.update(params, (err, data) => {
-        if (err) {
-          console.log(err);
-        }
-        else {
-          console.log(data);
-        }
-      }).promise();
+    let user = await table.get(data.username);
+    console.log(user.attrs);
+    let ans = { ...user.attrs.assets, [X = token]: { quantity: quantity } };
+    let res = await table.update({
+      username: data.username,
+      assets: ans,
+    });
+    console.log(res);
 
-    // await client.delete(params, (err, data) => {
 
-    //   if (err) {
-    //     console.log(err);
+    //   var params = {
+    //     TableName: "CryptoPortfolioTracker-user-sahith05",
+    //     Key: {
+    //       username: data.username,
+    //     },
+    //     UpdateExpression: "SET assets =  :t",
+    //     // ConditionExpression: "token = :t"  ,
+    //     Overwrite: false,
+    //     ExpressionAttributeValues: {
+    //       ":t": {
+    //         [X = token]: {
+    //           "quantity": quantity
+    //         },
+    //       }
+    //     },
+    //     ReturnValues: "UPDATED_NEW"
     //   }
-    //   else {
-    //     console.log(data);
-    //   }
-    // }).promise();
-
-    // data => {
-    //   // console.log(data);
-    //    client.update(params1, (err, data) => {
+    //   await client.update(params, (err, data) => {
     //     if (err) {
     //       console.log(err);
     //     }
     //     else {
     //       console.log(data);
     //     }
-    //   });
-    // }
-    // var params1 = {
-    //   TableName: "CryptoPortfolioTracker-user-sahith05",
-    //   Key: { username: data.username },
-    //   UpdateExpression: `set assets = :t `,
-    //   ExpressionAttributeValues: {
-    //     ":t": { 'quantity': data.quantity }
-    //   },
-    //   ReturnValues: "UPDATED_NEW"
-    // }
+    //   }).promise();
 
-    // ['quantity'] = data.quantity
 
     return {
       statusCode: 200,
@@ -75,8 +63,7 @@ module.exports.handle = async (event, context) => {
       },
       body: "Hello!",
     };
-  }
-  else {
+  } else {
     return {
       statusCode: 400,
       headers: {
@@ -87,4 +74,4 @@ module.exports.handle = async (event, context) => {
       body: "Hello!",
     };
   }
-};
+}

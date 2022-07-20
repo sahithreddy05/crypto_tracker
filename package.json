@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.871.0"
+    "aws-sdk": "^2.871.0",
+    "dynamodb": "^1.3.0"
   },
   "devDependencies": {
     "serverless": "2.31.0",
