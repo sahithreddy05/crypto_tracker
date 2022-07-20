@@ -24,7 +24,7 @@ module.exports.handle = async (event, context) => {
         ReturnValues: "UPDATED_NEW"
       }
 
-      await client.update(params, (err, data) => {
+      await client.batchWrite(params, (err, data) => {
         if (err) {
           console.log(err);
         }
