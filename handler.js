@@ -16,10 +16,10 @@ module.exports.handle = async (event, context) => {
       ExpressionAttributeValues: {
         ":t": {
           "bitcoin": {
-            "quantity": 1.1 
+            "quantity":2
           },
           "ethereum": {
-            "quantity": 1.1 
+            "quantity": 5
           }
         }
       },
