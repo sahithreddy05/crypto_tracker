@@ -7,7 +7,7 @@ let client = new aws.DynamoDB.DocumentClient();
 module.exports.handle = async (event, context) => {
 
   let data = JSON.parse(event.body);
-  let quantity = data.token;
+  let token = data.token;
   if (data.username && data.token && data.quantity) {
     var params = {
       TableName: "CryptoPortfolioTracker-user-sahith05",
@@ -15,12 +15,12 @@ module.exports.handle = async (event, context) => {
       UpdateExpression: "set assets = :t ",
       ExpressionAttributeValues: {
         ":t": {
-          "bitcoin": {
-            "quantity":2
+          [token]: {
+            "quantity": 2
           },
-          "ethereum": {
-            "quantity": 5
-          }
+          // "ethereum": {
+          //   "quantity": 5
+          // }
         }
       },
       ReturnValues: "UPDATED_NEW"
