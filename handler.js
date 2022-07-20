@@ -8,6 +8,7 @@ module.exports.handle = async (event, context) => {
 
   let data = JSON.parse(event.body);
   let token = data.token;
+  let quantity = data.quantity;
   if (data.username && data.token && data.quantity) {
     var params = {
       TableName: "CryptoPortfolioTracker-user-sahith05",
@@ -15,8 +16,8 @@ module.exports.handle = async (event, context) => {
       UpdateExpression: "set assets = :t ",
       ExpressionAttributeValues: {
         ":t": {
-          [token]: {
-            "quantity": 2
+          [X = token]: {
+            "quantity": quantity
           },
           // "ethereum": {
           //   "quantity": 5
