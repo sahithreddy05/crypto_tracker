@@ -10,31 +10,38 @@ module.exports.handle = async (event, context) => {
   let token = data.token;
   let quantity = data.quantity;
   if (data.username && data.token && data.quantity) {
-    var params = {
-      TableName: "CryptoPortfolioTracker-user-sahith05",
-      Key: { username: data.username },
-      UpdateExpression: "set assets = :t ",
-      ExpressionAttributeValues: {
-        ":t": {
-          [X = token]: {
-            "quantity": quantity
-          },
-          // "ethereum": {
-          //   "quantity": 5
-          // }
-        }
-      },
-      ReturnValues: "UPDATED_NEW"
-    }
+      var params = {
+        TableName: "CryptoPortfolioTracker-user-sahith05",
+        Key: { username: data.username },
+        UpdateExpression: "set assets = :t ",
+        ExpressionAttributeValues: {
+          ":t": {
+            [X = token]: {
+              "quantity": quantity
+            },
+          }
+        },
+        ReturnValues: "UPDATED_NEW"
+      }
 
-    await client.update(params, (err, data) => {
-      if (err) {
-        console.log(err);
-      }
-      else {
-        console.log(data);
-      }
-    }).promise();
+      await client.update(params, (err, data) => {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          console.log(data);
+        }
+      }).promise();
+
+    // await client.delete(params, (err, data) => {
+
+    //   if (err) {
+    //     console.log(err);
+    //   }
+    //   else {
+    //     console.log(data);
+    //   }
+    // }).promise();
 
     // data => {
     //   // console.log(data);
