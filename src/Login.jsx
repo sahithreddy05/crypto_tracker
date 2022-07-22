@@ -33,7 +33,7 @@ function Login() {
       .then(res => {
         let statusCode = res.status;
         console.log(statusCode);
-        if (statusCode == 201) {
+        if (statusCode === 201) {
           document.getElementById('submit_success').innerHTML = "Success, username accepted";
         }
       })
@@ -67,6 +67,7 @@ function Login() {
           console.log(result.status);
           console.log(result.data);
           localStorage.setItem('token', result.data)
+          localStorage.setItem('username', username_login)
           navigate('/dashboard')
         }
       })
