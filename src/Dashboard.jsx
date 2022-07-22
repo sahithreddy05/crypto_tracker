@@ -22,35 +22,35 @@ function Dashboard() {
     setQuantity(e.target.value)
   }
 
-  const handleAssetApi =()=>{
+  const handleAssetApi = () => {
 
 
-    if(token === '' && quantity === '' ){
-      document.getElementById('add_asset_error').innerHTML="Error: Please fill all the details";
+    if (token === '' && quantity === '') {
+      document.getElementById('add_asset_error').innerHTML = "Error: Please fill all the details";
 
     }
-    else
-    {
-      
-    axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/darshan/assets-service",{
-      
-    "token" : token,
-    "quantity": Number(quantity),
-    "username": localStorage.getItem("Username")
-    
-  })
-  .then(response=>{
-    let statusCode= response.data;
-    
-    console.log(statusCode);
-  
-    
-  })
-  .catch(error=>{
-    console.log(error.response.status);
-    
-  }) 
-}}
+    else {
+
+      axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/assets-service", {
+
+        "token": token,
+        "quantity": Number(quantity),
+        "username": localStorage.getItem("Username")
+
+      })
+        .then(response => {
+          let statusCode = response.data;
+
+          console.log(statusCode);
+
+
+        })
+        .catch(error => {
+          console.log(error.response.status);
+
+        })
+    }
+  }
 
   return (
 
