@@ -25,7 +25,7 @@ module.exports.handle = async (event, context) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "*",
       },
-      body: JSON.stringify(res.attrs.assets)
+      body: JSON.stringify([res.attrs.assets])
     };
   } catch (err) {
     return {
