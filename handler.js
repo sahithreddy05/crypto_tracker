@@ -17,7 +17,7 @@ module.exports.handle = async (event, context) => {
     console.log(username);
     // if (username) {
     var res = await tableName.get(username);
-    console.log(res);
+    console.log(res.attrs.assets);
     return {
       statusCode: 200,
       headers: {
