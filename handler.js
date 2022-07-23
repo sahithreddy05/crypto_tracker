@@ -12,11 +12,11 @@ var tableName = dynamo.define('tableName', {
 module.exports.handle = async (event, context) => {
 
   // console.log(event.queryStringParameters);
-
-  var username = event.queryStringParameters.username;
-  console.log(username);
-  var res = await tableName.get(username);
-  if (username != null) {
+  try {
+    var username = event.queryStringParameters.username;
+    console.log(username);
+    // if (username) {
+    var res = await tableName.get(username);
     console.log(res);
     return {
       statusCode: 200,
@@ -27,8 +27,7 @@ module.exports.handle = async (event, context) => {
       },
       body: JSON.stringify(res.attrs.assets)
     };
-  }
-  else {
+  } catch (err) {
     return {
       statusCode: 400,
       headers: {
