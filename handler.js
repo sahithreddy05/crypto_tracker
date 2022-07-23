@@ -20,7 +20,7 @@ module.exports.handle = async (event, context) => {
     var i = Object.keys(res.attrs.assets);
     var ans = [];
     for (var j = 0; j < i.length; j++) {
-      ans.push({ token: i[j], quantity: res.attrs.assets[i[j]] });
+      ans.push({ token: i[j], quantity: res.attrs.assets[i[j]].quantity });
       // console.log(Object.values(res.attrs.assets)[j]);
     }
     return {
