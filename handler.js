@@ -15,9 +15,14 @@ module.exports.handle = async (event, context) => {
   try {
     var username = event.queryStringParameters.username;
     console.log(username);
-    // if (username) {
     var res = await tableName.get(username);
-    console.log(res.attrs.assets);
+    // console.log(res.attrs.assets);
+    var i = Object.keys(res.attrs.assets);
+    var ans = [];
+    for (var j = 0; j < i.length; j++) {
+      ans.push({ token: i[j], quantity: res.attrs.assets[i[j]] });
+      // console.log(Object.values(res.attrs.assets)[j]);
+    }
     return {
       statusCode: 200,
       headers: {
@@ -25,7 +30,7 @@ module.exports.handle = async (event, context) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "*",
       },
-      body: JSON.stringify([res.attrs.assets])
+      body: JSON.stringify(ans)
     };
   } catch (err) {
     return {
