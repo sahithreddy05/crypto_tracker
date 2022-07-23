@@ -16,16 +16,7 @@ module.exports.handle = async (event, context) => {
   var username = event.queryStringParameters.username;
   console.log(username);
   var res = await tableName.get(username);
-  if (username) {
-    //   res = await tableName.get(username, function (err, acc) {
-    //     if (err) {
-    //       console.log(err);
-    //     }
-    //     else {
-    //       return (acc.attrs.assets);
-    //     }
-    //   });
-
+  if (username != null) {
     console.log(res);
     return {
       statusCode: 200,
