@@ -12,7 +12,7 @@ function Dashboard() {
     if (!localStorage.getItem('token')) {
       navigate('/')
     }
-  }, [])
+  }, [navigate])
 
   const handleToken = (e) => {
     setToken(e.target.value)
@@ -30,33 +30,26 @@ function Dashboard() {
     }
     else {
 
-      await axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/assets-service",
+      axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/assets-service",
         {
           "token": token,
           "quantity": Number(quantity),
           "username": localStorage.getItem("username")
         })
         .then(response => {
-          let statusCode = response.data;
-
-          console.log(localStorage.getItem("username"));
-          console.log(statusCode);
+          getData(response.data)
           setQuantity('')
           setToken('')
-
-
         })
         .catch(error => {
-          console.log(localStorage.getItem("username"));
           console.log(error.response.status);
-
         })
     }
   }
 
   const handleGetAssetApi = async () => {
 
-   await axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
+    await axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
       .then(function (response) {
         getData(response.data)
         console.log(data);
@@ -65,9 +58,7 @@ function Dashboard() {
         console.log(error);
       });
   }
-  // useEffect(() => {
-    handleGetAssetApi();
-  // }, [])
+  handleGetAssetApi();
   return (
     <div>
       <h1 id="dashboard_heading">Dashboard</h1>
@@ -85,7 +76,7 @@ function Dashboard() {
 
           {data.map((item, index) => (
             <tr key={index}>
-              <td className="table_data">{item.token} </td>
+              <td className="table_data">{item.token}</td>
               <td className="table_data">{item.quantity}</td>
               <td className="table_data">{item.price}</td>
               <td className="table_data">{item.totalValue}</td>
