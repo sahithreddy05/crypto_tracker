@@ -14,20 +14,6 @@ function Dashboard() {
     }
   }, [])
 
-
-  useEffect(() => {
-    axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
-      .then(function (response) {
-        getData(response.data)
-        console.log(data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  },[])
-
-
-
   const handleToken = (e) => {
     setToken(e.target.value)
   }
@@ -68,6 +54,17 @@ function Dashboard() {
     }
   }
 
+  useEffect(() => {
+    axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
+      .then(function (response) {
+        getData(response.data)
+        console.log(data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [data])
+
   return (
 
 
@@ -84,11 +81,11 @@ function Dashboard() {
           </tr>
         </thead>
         <tbody>
-          {data.map((item, index) => ( 
+          {data.map((item, index) => (
             <tr key={index}>
               <td className="table_data">{item.token} </td>
               <td className="table_data">{item.quantity}</td>
-              <td className="table_data">{item.price}</td>
+              <td className="table_data">{Number(item.price)}</td>
               <td className="table_data">{item.totalValue}</td>
               <td className="table_data">{item.allocation ? item.allocation : 0}</td>
             </tr>
