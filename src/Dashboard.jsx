@@ -19,7 +19,7 @@ function Dashboard() {
     axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
       .then(function (response) {
         getData(response.data)
-        console.log(data);
+        // console.log(data);
       })
       .catch(function (error) {
         console.log(error);
@@ -84,7 +84,7 @@ function Dashboard() {
           </tr>
         </thead>
         <tbody>
-          {data.map((item, index) => (
+          {data.map((item, index) => ( 
             <tr key={index}>
               <td className="table_data">{item.token} </td>
               <td className="table_data">{item.quantity}</td>
