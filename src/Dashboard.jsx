@@ -55,7 +55,8 @@ function Dashboard() {
   }
 
   const handleGetAssetApi = async () => {
-    axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
+
+   await axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
       .then(function (response) {
         getData(response.data)
         console.log(data);
@@ -64,7 +65,9 @@ function Dashboard() {
         console.log(error);
       });
   }
-  handleGetAssetApi();
+  // useEffect(() => {
+    handleGetAssetApi();
+  // }, [])
   return (
     <div>
       <h1 id="dashboard_heading">Dashboard</h1>
@@ -79,6 +82,7 @@ function Dashboard() {
           </tr>
         </thead>
         <tbody>
+
           {data.map((item, index) => (
             <tr key={index}>
               <td className="table_data">{item.token} </td>
