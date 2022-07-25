@@ -55,6 +55,8 @@ function Dashboard() {
 
           console.log(localStorage.getItem("username"));
           console.log(statusCode);
+          setQuantity('')
+          setToken('')
 
 
         })
@@ -91,13 +93,6 @@ function Dashboard() {
               <td className="table_data">{item.allocation ? item.allocation : 0}</td>
             </tr>
           ))}
-          {/* <tr >
-            <td className="table_data">ethereum</td>
-            <td className="table_data">25</td>
-            <td className="table_data">200</td>
-            <td className="table_data">5000</td>
-            <td className="table_data">50%</td>
-          </tr> */}
         </tbody>
       </table>
       Token  <input type="text" value={token} onChange={handleToken} id="dashboard_token" />
