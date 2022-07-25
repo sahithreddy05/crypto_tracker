@@ -12,11 +12,19 @@ function Dashboard() {
     if (!localStorage.getItem('token')) {
       navigate('/')
     }
+
+    
   }, [navigate])
+
+  useEffect(() => {
+  handleGetAssetApi();
+  },)
 
   const handleToken = (e) => {
     setToken(e.target.value)
   }
+
+
   const handleQuantity = (e) => {
     setQuantity(e.target.value)
   }
@@ -58,7 +66,6 @@ function Dashboard() {
         console.log(error);
       });
   }
-  handleGetAssetApi();
   return (
     <div>
       <h1 id="dashboard_heading">Dashboard</h1>
