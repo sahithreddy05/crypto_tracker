@@ -80,7 +80,6 @@ function Dashboard() {
           </tr>
         </thead>
         <tbody>
-
           {data.map((item, index) => (
             <tr key={index}>
               <td className="table_data">{item.token}</td>
@@ -96,7 +95,6 @@ function Dashboard() {
       Qty. Owned  <input type="number" value={quantity} onChange={handleQuantity} id="dashboard_quantity" />
 
       <button id="dashboard_add_button" onClick={handleAssetApi}  >Add Asset</button>
-
       <p id='add_asset_error'></p>
 
     </div>
