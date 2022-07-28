@@ -19,13 +19,27 @@ module.exports.handle = async (event, context,callback) => {
     var res = await tableName.get(username);
     var key = Object.keys(res.attrs.assets);
     var ans = [];
-    var price;
-    for (var j = 0; j < key.length; j++) {
+    var sum = 0;
+
+    for (let j = 0; j < key.length; j++) {
       let log = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${key[j]}&vs_currencies=inr`)
       console.log(log.data[key[j]].inr);
       price = log.data[key[j]].inr;
       totalValue = res.attrs.assets[key[j]].quantity * price;
-      ans.push({ token: key[j], quantity: res.attrs.assets[key[j]].quantity, price: price, allocation: 33, totalValue: totalValue });
+      sum = sum + totalValue;
+      // allocation = sum
+      // console.log(allocation);
+      // ans.push({ token: key[j], quantity: res.attrs.assets[key[j]].quantity, price: price, totalValue: totalValue ,allocation:allocation});
+    }
+
+    for (let j = 0; j < key.length; j++) {
+      let log = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${key[j]}&vs_currencies=inr`)
+      console.log(log.data[key[j]].inr);
+      price = log.data[key[j]].inr;
+      totalValue = res.attrs.assets[key[j]].quantity * price;
+
+      allocation = Number(totalValue) / Number(sum) * 100;
+      ans.push({ token: key[j], quantity: res.attrs.assets[key[j]].quantity, price: price, totalValue: totalValue ,allocation:allocation});
     }
 
     return {
