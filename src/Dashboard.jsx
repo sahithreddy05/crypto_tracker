@@ -13,6 +13,17 @@ function Dashboard() {
       navigate('/')
     }
 
+    // useEffect(() => {
+    axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
+      .then(function (response) {
+        getData(response.data)
+        console.log(data);
+      })
+      .catch(function (error) {
+        console.log(error);
+        //  });
+      }, [data])
+
 
   }, [navigate])
 
@@ -55,18 +66,8 @@ function Dashboard() {
     }
   }
 
-  
-    useEffect(() => {
-       axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
-        .then(function (response) {
-          getData(response.data)
-          console.log(data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }, )
-  // }
+
+
   return (
     <div>
       <h1 id="dashboard_heading">Dashboard</h1>
