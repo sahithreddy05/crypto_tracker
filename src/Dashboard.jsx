@@ -84,9 +84,9 @@ function Dashboard() {
             <tr key={index}>
               <td className="table_data">{item.token}</td>
               <td className="table_data">{item.quantity}</td>
-              <td className="table_data">{item.price}</td>
-              <td className="table_data">{item.totalValue}</td>
-              <td className="table_data">{item.allocation ? item.allocation : 0}</td>
+              <td className="table_data">${item.price}</td>
+              <td className="table_data">${item.totalValue}</td>
+              <td className="table_data">{item.allocation ? item.allocation : 0}%</td>
             </tr>
           ))}
         </tbody>
