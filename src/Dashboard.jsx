@@ -13,12 +13,12 @@ function Dashboard() {
       navigate('/')
     }
 
-    
+
   }, [navigate])
 
-  useEffect(() => {
-  handleGetAssetApi();
-  },)
+  // useEffect(() => {
+  //   handleGetAssetApi();
+  // })
 
   const handleToken = (e) => {
     setToken(e.target.value)
@@ -55,17 +55,19 @@ function Dashboard() {
     }
   }
 
-  const handleGetAssetApi = async () => {
+  // const handleGetAssetApi = () => {
 
-    await axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
-      .then(function (response) {
-        getData(response.data)
-        console.log(data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+    useEffect(() => {
+       axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
+        .then(function (response) {
+          getData(response.data)
+          console.log(data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }, [data])
+  // }
   return (
     <div>
       <h1 id="dashboard_heading">Dashboard</h1>
