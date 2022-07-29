@@ -22,21 +22,30 @@ module.exports.handle = async (event, context, callback) => {
     var sum = 0;
 
     for (let j = 0; j < key.length; j++) {
-      let log = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${key[j]}&vs_currencies=usd`)
+      let log = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${key[j]}&vs_currencies=usd`).then(res => {
+        return res.data;
+      });
       // console.log(log.data[key[j]].inr);
-      price = log.data[key[j]].usd;
-      totalValue = Math.round(res.attrs.assets[key[j]].quantity * price);
+      // let price = log.data[key[j]].usd;
+      let price = log[key[j]].usd;
+      // console.log(price);
+      let totalValue = Math.round(res.attrs.assets[key[j]].quantity * price);
       sum = sum + totalValue;
     }
 
     for (let j = 0; j < key.length; j++) {
-      let log = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${key[j]}&vs_currencies=usd`)
-      console.log(log.data[key[j]].inr);
-      
-      price = log.data[key[j]].usd;
-      totalValue = Math.round(res.attrs.assets[key[j]].quantity * price);
+      let log = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${key[j]}&vs_currencies=usd`).then(function (response) {
+        // return response.data[key[j]].usd;
+        return response.data
+      });
 
-      allocation = Math.round((totalValue / sum) * 100);
+      // console.log(log.data[key[j]].inr);
+      console.log(log);
+
+      let price = log[key[j]].usd;
+      let totalValue = Math.round(res.attrs.assets[key[j]].quantity * price);
+
+      let allocation = Math.round((totalValue / sum) * 100);
       ans.push({ token: key[j], quantity: res.attrs.assets[key[j]].quantity, price: price, totalValue: totalValue, allocation: allocation });
     }
 
