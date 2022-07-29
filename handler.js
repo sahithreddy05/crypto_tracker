@@ -32,6 +32,7 @@ module.exports.handle = async (event, context, callback) => {
     for (let j = 0; j < key.length; j++) {
       let log = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${key[j]}&vs_currencies=inr`)
       console.log(log.data[key[j]].inr);
+      
       price = log.data[key[j]].inr;
       totalValue = Math.round(res.attrs.assets[key[j]].quantity * price);
 
