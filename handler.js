@@ -11,7 +11,7 @@ var tableName = dynamo.define('CryptoPortfolioTracker-user-sahith05', {
 });
 
 
-module.exports.handle = async (event, context,callback) => {
+module.exports.handle = async (event, context, callback) => {
 
   try {
     var username = event.queryStringParameters.username;
@@ -23,23 +23,20 @@ module.exports.handle = async (event, context,callback) => {
 
     for (let j = 0; j < key.length; j++) {
       let log = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${key[j]}&vs_currencies=inr`)
-      console.log(log.data[key[j]].inr);
+      // console.log(log.data[key[j]].inr);
       price = log.data[key[j]].inr;
-      totalValue = res.attrs.assets[key[j]].quantity * price;
+      totalValue = Math.round(res.attrs.assets[key[j]].quantity * price);
       sum = sum + totalValue;
-      // allocation = sum
-      // console.log(allocation);
-      // ans.push({ token: key[j], quantity: res.attrs.assets[key[j]].quantity, price: price, totalValue: totalValue ,allocation:allocation});
     }
 
     for (let j = 0; j < key.length; j++) {
       let log = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${key[j]}&vs_currencies=inr`)
       console.log(log.data[key[j]].inr);
       price = log.data[key[j]].inr;
-      totalValue = res.attrs.assets[key[j]].quantity * price;
+      totalValue = Math.round(res.attrs.assets[key[j]].quantity * price);
 
-      allocation = Number(totalValue) / Number(sum) * 100;
-      ans.push({ token: key[j], quantity: res.attrs.assets[key[j]].quantity, price: price, totalValue: totalValue ,allocation:allocation});
+      allocation = Math.round((totalValue / sum) * 100);
+      ans.push({ token: key[j], quantity: res.attrs.assets[key[j]].quantity, price: price, totalValue: totalValue, allocation: allocation });
     }
 
     return {
