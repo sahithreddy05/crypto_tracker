@@ -12,10 +12,15 @@ var table =
   })
 // tableName:"CryptoPortfolioTracker-user-sahith05";
 module.exports.handle = async (event, context) => {
-  let data = JSON.parse(event.body);
+  let data = (event.body) ? JSON.parse(event.body) : {};
+  console.log(data);
   let token = data.token;
+  console.log(token);
   let quantity = data.quantity;
-  if (data.username && data.token && data.quantity) {
+  console.log(quantity);
+  let action = data.action;
+  console.log(action);
+  if (data.username && data.token && quantity) {
 
     let user = await table.get(data.username);
     console.log(user.attrs);
@@ -26,34 +31,6 @@ module.exports.handle = async (event, context) => {
     });
     console.log(res);
 
-
-    //   var params = {
-    //     TableName: "CryptoPortfolioTracker-user-sahith05",
-    //     Key: {
-    //       username: data.username,
-    //     },
-    //     UpdateExpression: "SET assets =  :t",
-    //     // ConditionExpression: "token = :t"  ,
-    //     Overwrite: false,
-    //     ExpressionAttributeValues: {
-    //       ":t": {
-    //         [X = token]: {
-    //           "quantity": quantity
-    //         },
-    //       }
-    //     },
-    //     ReturnValues: "UPDATED_NEW"
-    //   }
-    //   await client.update(params, (err, data) => {
-    //     if (err) {
-    //       console.log(err);
-    //     }
-    //     else {
-    //       console.log(data);
-    //     }
-    //   }).promise();
-
-
     return {
       statusCode: 200,
       headers: {
@@ -63,7 +40,25 @@ module.exports.handle = async (event, context) => {
       },
       body: "Hello!",
     };
-  } else {
+  }
+  else if (data.username && data.token && action == 'DELETE') {
+    let user = await table.get(data.username);
+    let req = delete user.attrs.assets[token];
+
+    let res = await table.update({ username: data.username, assets: user.attrs.assets });
+    console.log(user.attrs.assets);
+
+    return {
+      statusCode: 200,
+      headers: {
+        "Content-Type": "*/*",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+      },
+      body: "Hello!",
+    }
+  }
+  else {
     return {
       statusCode: 400,
       headers: {
