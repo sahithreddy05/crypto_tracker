@@ -55,8 +55,7 @@ function Dashboard() {
     }
   }
 
-  // const handleGetAssetApi = () => {
-
+  
     useEffect(() => {
        axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
         .then(function (response) {
@@ -66,7 +65,7 @@ function Dashboard() {
         .catch(function (error) {
           console.log(error);
         });
-    }, [data])
+    }, )
   // }
   return (
     <div>
