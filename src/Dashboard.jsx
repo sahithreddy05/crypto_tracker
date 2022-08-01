@@ -92,20 +92,20 @@ function Dashboard() {
               <td className="table_data">${item.price}</td>
               <td className="table_data">${item.totalValue}</td>
               <td className="table_data">{item.allocation ? item.allocation : 0}%</td>
-              <td className="delete_button"><input type="submit" className="delete_button" value="delete" onClick={() => {
-                Deleteapi(item.token)
-              }} /></td>
+              <td className="delete_button"><a href="#/dashboard" onClick={() => Deleteapi(item.token)}>Delete</a></td>
+                {/*  onclick={() => Deleteapi(item.token)} 
+              >Delete</a> </td> */}
             </tr>
           ))}
         </tbody>
       </table>
-      Token  <input type="text" value={token} onChange={handleToken} id="dashboard_token" />
-      Qty. Owned  <input type="number" value={quantity} onChange={handleQuantity} id="dashboard_quantity" />
+      Token < input type="text" value={token} onChange={handleToken} id="dashboard_token" />
+      Qty.Owned < input type="number" value={quantity} onChange={handleQuantity} id="dashboard_quantity" />
 
       <button id="dashboard_add_button" onClick={handleAssetApi}  >Add Asset</button>
       <p id='add_asset_error'></p>
 
-    </div>
+    </div >
 
 
   );
