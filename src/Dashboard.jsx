@@ -14,15 +14,8 @@ function Dashboard() {
       navigate('/')
     }
 
-    // axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
-    //   .then(function (response) {
-    //     console.log(data);
-    //     getData(response.data)
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   })
     handleGetApi()
+    // eslint-disable-next-line
   }, [])
 
 
@@ -81,13 +74,15 @@ function Dashboard() {
       "username": localStorage.getItem("username"),
       "token": e,
       "action": "DELETE"
+    }).then(response => {
+      console.log(response.data)
+      handleGetApi()
     })
-      .then(
-        handleGetApi()
-      ).catch(error => {
+      .catch(error => {
         console.log(error.response.status);
       }
       )
+    handleGetApi()
   }
 
   return (
@@ -112,7 +107,7 @@ function Dashboard() {
               <td className="table_data">${item.price}</td>
               <td className="table_data">${item.totalValue}</td>
               <td className="table_data">{item.allocation ? item.allocation : 0}%</td>
-              <td className="delete_button" onClick={() => Deleteapi(item.token)}><button >Delete</button></td>
+              <button className="delete_button" type="submit" onClick={() => Deleteapi(item.token)} >Delete </button>
             </tr>
           ))}
         </tbody>
