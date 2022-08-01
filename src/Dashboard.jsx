@@ -105,7 +105,8 @@ function Dashboard() {
         </thead>
         <tbody>
           {data.map((item, index) => (
-            <tr key={index}>
+            // <tr key={index}>
+            <tr key={item.token}>
               <td className="table_data">{item.token}</td>
               <td className="table_data">{item.quantity}</td>
               <td className="table_data">${item.price}</td>
