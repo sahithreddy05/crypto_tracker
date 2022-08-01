@@ -23,7 +23,7 @@ function Dashboard() {
     //     console.log(error);
     //   })
     handleGetApi()
-  }, [data])
+  }, [])
 
 
   const handleGetApi = () => {
@@ -65,6 +65,7 @@ function Dashboard() {
 
           console.log(response.data)
           // getData(response.data)
+          handleGetApi()
           setQuantity('')
           setToken('')
         })
