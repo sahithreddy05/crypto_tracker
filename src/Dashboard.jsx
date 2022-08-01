@@ -95,9 +95,16 @@ function Dashboard() {
       )
   }
 
+  const logout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    navigate('/')
+  }
+
   return (
     <div>
       <h1 id="dashboard_heading">Dashboard</h1>
+      <a id="logout_link" href="/" onClick={logout}>Logout</a>
       <table>
         <thead>
           <tr>
