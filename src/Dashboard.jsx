@@ -80,7 +80,7 @@ function Dashboard() {
     }).then(response => {
       console.log(response.data)
       if (response.data) {
-      handleGetApi()
+        handleGetApi()
       }
     })
       .catch(error => {
@@ -123,7 +123,7 @@ function Dashboard() {
       Token < input type="text" value={token} onChange={handleToken} id="dashboard_token" />
       Qty.Owned < input type="number" value={quantity} onChange={handleQuantity} id="dashboard_quantity" />
 
-      <button id="dashboard_add_button" onClick={handleAssetApi}  >Add Asset</button>
+      <button id="dashboard_save_button" onClick={handleAssetApi}  >Save Asset</button>
       <p id='add_asset_error'></p>
 
     </div >
