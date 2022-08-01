@@ -104,7 +104,7 @@ function Dashboard() {
   return (
     <div>
       <h1 id="dashboard_heading">Dashboard</h1>
-      <a id="logout_link" href="/" onClick={logout}>Logout</a>
+      <button id="logout_link" onClick={logout}>Logout</button>
       <table>
         <thead>
           <tr>
