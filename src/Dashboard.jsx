@@ -7,7 +7,6 @@ function Dashboard() {
   const [token, setToken] = useState('')
   const [quantity, setQuantity] = useState('')
   const [data, getData] = useState([])
-  const [item, setItem] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
