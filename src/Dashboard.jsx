@@ -92,7 +92,7 @@ function Dashboard() {
               <td className="table_data">${item.price}</td>
               <td className="table_data">${item.totalValue}</td>
               <td className="table_data">{item.allocation ? item.allocation : 0}%</td>
-              <td><input type="submit" className="delete_button" value="delete" onClick={() => {
+              <td className="delete_button"><input type="submit" className="delete_button" value="delete" onClick={() => {
                 Deleteapi(item.token)
               }} /></td>
             </tr>
