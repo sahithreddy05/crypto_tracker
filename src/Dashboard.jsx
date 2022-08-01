@@ -71,7 +71,7 @@ function Dashboard() {
   const Deleteapi = async (e) => {
     console.log("token name:", e);
 
-    // getData(data.filter(item => item.token !== e))
+    getData(data.filter(item => item.token !== e))
 
     await axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/assets-service", {
       "username": localStorage.getItem("username"),
