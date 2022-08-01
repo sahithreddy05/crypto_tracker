@@ -14,6 +14,19 @@ function Dashboard() {
       navigate('/')
     }
 
+    // axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
+    //   .then(function (response) {
+    //     console.log(data);
+    //     getData(response.data)
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   })
+    handleGetApi()
+  }, [data])
+
+
+  const handleGetApi = () => {
     axios.get(`https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/portfolio-service?username=${localStorage.getItem('username')}`)
       .then(function (response) {
         console.log(data);
@@ -22,7 +35,7 @@ function Dashboard() {
       .catch(function (error) {
         console.log(error);
       })
-  }, [data])
+  }
 
   const handleToken = (e) => {
     setToken(e.target.value)
@@ -68,6 +81,9 @@ function Dashboard() {
       "token": e,
       "action": "DELETE"
     })
+    .then(
+      handleGetApi()
+    )
   }
 
   return (
