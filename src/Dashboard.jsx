@@ -48,7 +48,7 @@ function Dashboard() {
     }
     else {
 
-    await  axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/assets-service",
+      await axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/assets-service",
         {
           "token": token,
           "quantity": Number(quantity),
@@ -70,19 +70,25 @@ function Dashboard() {
 
   const Deleteapi = async (e) => {
     console.log("token name:", e);
-  await  axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/assets-service", {
+    const dataCopy = [...data]
+    dataCopy.filter(item => item.token !== e)
+    getData(dataCopy)
+    console.log(dataCopy);
+    await axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/assets-service", {
       "username": localStorage.getItem("username"),
       "token": e,
       "action": "DELETE"
     }).then(response => {
       console.log(response.data)
-      // handleGetApi()
+      if (response.data) {
+        handleGetApi()
+      }
     })
       .catch(error => {
         console.log(error.response.status);
       }
       )
-   await handleGetApi()
+    //  handleGetApi()
   }
 
   return (
