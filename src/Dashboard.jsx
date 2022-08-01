@@ -82,9 +82,12 @@ function Dashboard() {
       "token": e,
       "action": "DELETE"
     })
-    .then(
-      handleGetApi()
-    )
+      .then(
+        handleGetApi()
+      ).catch(error => {
+        console.log(error.response.status);
+      }
+      )
   }
 
   return (
@@ -109,9 +112,7 @@ function Dashboard() {
               <td className="table_data">${item.price}</td>
               <td className="table_data">${item.totalValue}</td>
               <td className="table_data">{item.allocation ? item.allocation : 0}%</td>
-              <td className="delete_button"><a href="#/dashboard" onClick={() => Deleteapi(item.token)}>Delete</a></td>
-                {/*  onclick={() => Deleteapi(item.token)} 
-              >Delete</a> </td> */}
+              <td className="delete_button"><a onClick={() => Deleteapi(item.token)} href='#/dashboard'>Delete</a></td>
             </tr>
           ))}
         </tbody>
