@@ -48,7 +48,7 @@ function Dashboard() {
     }
     else {
 
-      axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/assets-service",
+    await  axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/assets-service",
         {
           "token": token,
           "quantity": Number(quantity),
@@ -82,7 +82,7 @@ function Dashboard() {
         console.log(error.response.status);
       }
       )
-    handleGetApi()
+   await handleGetApi()
   }
 
   return (
