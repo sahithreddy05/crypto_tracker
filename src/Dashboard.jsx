@@ -22,7 +22,7 @@ function Dashboard() {
       .catch(function (error) {
         console.log(error);
       })
-  })
+  }, [data])
 
   const handleToken = (e) => {
     setToken(e.target.value)
@@ -49,9 +49,9 @@ function Dashboard() {
           "username": localStorage.getItem("username")
         })
         .then(response => {
-          
+
           console.log(response.data)
-          getData(response.data)
+          // getData(response.data)
           setQuantity('')
           setToken('')
         })
@@ -62,8 +62,12 @@ function Dashboard() {
   }
 
   const Deleteapi = async (e) => {
-
-    console.log(e.target.className);
+    console.log("token name:", e);
+    axios.post("https://components.skillreactor.io/CryptoPortfolioTracker/sahith05/assets-service", {
+      "username": localStorage.getItem("username"),
+      "token": e,
+      "action": "DELETE"
+    })
   }
 
   return (
@@ -88,7 +92,9 @@ function Dashboard() {
               <td className="table_data">${item.price}</td>
               <td className="table_data">${item.totalValue}</td>
               <td className="table_data">{item.allocation ? item.allocation : 0}%</td>
-              <td><input type="submit" className="delete_button" value="delete" onClick={Deleteapi} /></td>
+              <td><input type="submit" className="delete_button" value="delete" onClick={() => {
+                Deleteapi(item.token)
+              }} /></td>
             </tr>
           ))}
         </tbody>
