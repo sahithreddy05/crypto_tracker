@@ -112,7 +112,7 @@ function Dashboard() {
               <td className="table_data">${item.price}</td>
               <td className="table_data">${item.totalValue}</td>
               <td className="table_data">{item.allocation ? item.allocation : 0}%</td>
-              <td className="delete_button"><a onClick={() => Deleteapi(item.token)} href='#/dashboard'>Delete</a></td>
+              <td className="delete_button" onClick={() => Deleteapi(item.token)}><button >Delete</button></td>
             </tr>
           ))}
         </tbody>
