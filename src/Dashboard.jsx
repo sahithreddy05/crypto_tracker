@@ -6,7 +6,7 @@ import axios from 'axios';
 function Dashboard() {
   const [token, setToken] = useState('')
   const [quantity, setQuantity] = useState('')
-  const [data, getData] = useState([''])
+  const [data, getData] = useState([])
   const navigate = useNavigate()
 
   useEffect(() => {
