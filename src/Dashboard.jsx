@@ -7,6 +7,7 @@ function Dashboard() {
   const [token, setToken] = useState('')
   const [quantity, setQuantity] = useState('')
   const [data, getData] = useState([])
+  const [item, setItem] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -68,6 +69,12 @@ function Dashboard() {
     }
   }
 
+  const handleEdit = async (token, quantity) => {
+
+    setToken(token)
+    setQuantity(quantity)
+  }
+
   const Deleteapi = async (e) => {
     console.log("token name:", e);
 
@@ -114,7 +121,7 @@ function Dashboard() {
               <td className="table_data">{item.allocation ? item.allocation : 0}%</td>
               <td className="table_data">
                 <button className="delete_button" type="submit" onClick={() => Deleteapi(item.token)} >Delete</button>
-                <button className="edit_button" type="submit" onClick={() => handleAssetApi(item.token)} >Edit</button>
+                <button className="edit_button" type="submit" onClick={() => handleEdit(item.token, item.quantity)} >Edit</button>
               </td>
             </tr>
           ))}
