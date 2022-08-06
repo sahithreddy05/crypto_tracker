@@ -3,11 +3,6 @@ const aws = require("aws-sdk");
 const dynamoDb = new aws.DynamoDB.DocumentClient();
 aws.config.loadFromPath("./skillreactor/config.json");
 
-// console.log(data);
-
-// console.log(val);
-
-// console.log("hash:",hash);
 
 
 module.exports.handle = async (event, context) => {
@@ -28,10 +23,6 @@ module.exports.handle = async (event, context) => {
       password: hash
     }
   }
-
-  // console.log(pass.username);
-  // console.log(pass.email);
-  // console.log(pass.password ? pass.password : "no password");
  
   if(pass.username && pass.email && pass.password){
   try {
