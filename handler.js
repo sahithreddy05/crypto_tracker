@@ -25,21 +25,16 @@ module.exports.handle = async (event, context, callback) => {
       let log = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${key[j]}&vs_currencies=usd`).then(res => {
         return res.data;
       });
-      // console.log(log.data[key[j]].inr);
-      // let price = log.data[key[j]].usd;
       let price = log[key[j]].usd;
-      // console.log(price);
       let totalValue = Math.round(res.attrs.assets[key[j]].quantity * price);
       sum = sum + totalValue;
     }
 
     for (let j = 0; j < key.length; j++) {
       let log = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${key[j]}&vs_currencies=usd`).then(function (response) {
-        // return response.data[key[j]].usd;
         return response.data
       });
 
-      // console.log(log.data[key[j]].inr);
       console.log(log);
 
       let price = log[key[j]].usd;
